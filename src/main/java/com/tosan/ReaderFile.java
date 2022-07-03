@@ -22,7 +22,6 @@ private static Logger logger=Logger.getLogger(ReaderFile.class);
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder db = factory.newDocumentBuilder();
                 Document document = db.parse(path);
-                logger.info("file logback is not null");
                 NodeList nodeList = document.getElementsByTagName("appender");
                 NodeList nodeList10 = getAttribiute(nodeList, "class", "net.logstash.logback.appender.LogstashTcpSocketAppender");
                 logger.info("logstash exist in logback file ");
@@ -30,6 +29,7 @@ private static Logger logger=Logger.getLogger(ReaderFile.class);
                 Element nodeList30 = getTag(nodeList20.getChildNodes(), "providers");
                 Element nodeList40 = getTag(nodeList30.getChildNodes(), "pattern");
                 String pattern = nodeList40.getElementsByTagName("pattern").item(0).getTextContent();
+                logger.debug("pattern is : "+pattern);
                 logger.info("pattern is ready and return it ");
                 return pattern;
             }

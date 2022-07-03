@@ -12,21 +12,23 @@ public class ComparePattern {
 public Boolean comparePattern(String pattern){
     Log4jProvider.getLog4j();
     ObjectMapper objectMapper=new ObjectMapper();
-    HashMap hashMap=new HashMap();
+    HashMap hashMap;
     try {
         if(pattern!=null) {
-            logger.info("pattern loaded and not null ");
-            hashMap = objectMapper.readValue(pattern, HashMap.class);
-          if(hashMap.containsKey("app_name")&hashMap.containsKey("app_version")&hashMap.containsKey("raw_log")){
-              logger.info("patter is ok and contain app_name,app_version,raw_log ");
+            String SPattern=pattern.toLowerCase();
+            hashMap = objectMapper.readValue(SPattern, HashMap.class);
+            if(hashMap.containsKey("app_name")&hashMap.containsKey("app_version")&hashMap.containsKey("raw_log")){
+              logger.info("patter is ok and contains app_name,app_version,raw_log ");
+              return true;
           }
         }else {
-            logger.info("file is null ");
+            logger.info("pattern is Not ok ");
             return false;
         }
     } catch (JsonProcessingException e) {
         e.printStackTrace();
     }
+    logger.info("file is null ");
     return false;
   }
 }

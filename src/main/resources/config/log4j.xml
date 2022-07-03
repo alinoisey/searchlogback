@@ -12,7 +12,7 @@
 
 
     <appender name="File" class="org.apache.log4j.FileAppender">
-        <param name="File" value="Searchlog.log"/>
+        <param name="file" value="Searchlog.log"/>
         <layout class="org.apache.log4j.PatternLayout" >
             <param name="ConversionPattern" value="[%t] %-5p %c{1} %d{dd MMM YYYY HH:mm::ss.SSS} ------ %m%n"/>
         </layout>
@@ -21,11 +21,10 @@
         <param name="immediateFlush" value="true"/>
     </appender>
 
-
     <root>
-        <priority value="info"/>
+        <priority value="Info"/>
         <appender-ref ref="console"/>
-        <appender-ref ref="file"/>
+        <appender-ref ref="File"/>
     </root>
 
 </log4j:configuration>
