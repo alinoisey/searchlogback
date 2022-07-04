@@ -7,9 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Main {
   private static Logger logger=Logger.getLogger(Main.class);
@@ -27,19 +25,16 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List blacklist=new ArrayList();
-        blacklist.add("target");
-        blacklist.add("TARGET");
-        List listlogback = SearchFile.getlogback(properties.getProperty("address"), properties.getProperty("filename"),blacklist);
+        List blacklist=new ArrayList(Arrays.asList(properties.getProperty("BlackList").split(",")));
+        List listlogback = SearchFile.getlogback(properties.getProperty("Address"), properties.getProperty("FileName"),blacklist);
         logger.info("list address logback file is ready ");
         ReaderFile readerFile = new ReaderFile();
         ComparePattern comparePattern = new ComparePattern();
-        for (int i = 0; i < listlogback.size(); i++) {
-            logger.debug("logback file address is : "+listlogback.get(i).toString());
-            String pattern = readerFile.readerFileLogback(listlogback.get(i).toString());
-            comparePattern.comparePattern(pattern);
-        }
-
+            for (Object list11:listlogback) {
+                logger.debug("logback file address is : "+list11.toString());
+                String pattern = readerFile.readerFileLogback(list11.toString());
+                comparePattern.comparePattern(pattern);
+            }
     }
 
 }
