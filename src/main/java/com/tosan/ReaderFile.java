@@ -33,22 +33,18 @@ private static Logger logger=Logger.getLogger(ReaderFile.class);
                 return pattern;
             }
         }catch (FileNotFoundException e) {
-            logger.error("Exception : file not found");
-//            e.printStackTrace();
+            logger.error("Exception : File not found");
         } catch (IOException e) {
            logger.error("Exception : I/O Exception for read logback file ");
-//            e.printStackTrace();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
-            logger.error("Exception : logback file is null ");
-//            e.printStackTrace();
+            logger.error("Exception : Logback file is null ");
             return null;
         }
         logger.info("logback file is null");
         return null;
     }
-
     public NodeList getAttribiute(NodeList nodeList, String attribiute, String attribiute2) {
         Log4jProvider.getLog4j();
         Element element = null;
